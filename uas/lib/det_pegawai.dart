@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uas/dbservices.dart';
 
 import 'class.dart';
 
@@ -17,10 +18,10 @@ class _detail_pegawaiState extends State<detail_pegawai> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Hasil Detail Pegawai",
+      title: "Hasil Detail Data",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Hasil Detail Pegawai"),
+          title: Text("Hasil Detail Data"),
         ),
         body: Container(
           alignment: Alignment.topLeft,
@@ -36,7 +37,15 @@ class _detail_pegawaiState extends State<detail_pegawai> {
                   "\cthumbnail : " +
                   widget.isiDataFinal[widget.index].cthumbnail +
                   "\link : " +
-                  widget.isiDataFinal[widget.index].link)
+                  widget.isiDataFinal[widget.index].link),
+              Image.network(widget.isiDataFinal[widget.index].cthumbnail),
+              ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      //Database.tambahData(KTM: KTM)
+                    });
+                  },
+                  child: Text("Like"))
             ],
           ),
         ),

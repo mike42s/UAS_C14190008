@@ -11,6 +11,16 @@ class pegawai {
     required this.cdesc,
     required this.cthumbnail,
   });
+  Map<String, dynamic> toJson() {
+    return {
+      "link": link,
+      "title": ctitle,
+      "pubDate": cpubdate,
+      "description": cdesc,
+      "thumbnail": cthumbnail
+    };
+  }
+
   factory pegawai.fromJson(Map<String, dynamic> json) {
     return pegawai(
       link: json['link'],
