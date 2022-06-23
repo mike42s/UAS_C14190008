@@ -5,14 +5,13 @@ import 'dart:math';
 CollectionReference tblLike = FirebaseFirestore.instance.collection("Like");
 
 class Database {
-  static Stream<QuerySnapshot> getData(String Nomor) {
-    if (Nomor == "") {
+  static Stream<QuerySnapshot> getData(String ctitle) {
+    if (ctitle == "") {
       return tblLike.snapshots();
     } else {
       return tblLike
-          .orderBy("Nomor")
-          .startAt([Nomor]).endAt([Nomor + '\uf8ff']).snapshots();
-      //return tblKTM.where("Nomor", isEqualTo: Nomor).snapshots();
+          .orderBy("ctitle")
+          .startAt([ctitle]).endAt([ctitle + '\uf8ff']).snapshots();
     }
   }
 

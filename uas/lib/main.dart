@@ -1,11 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:uas/det_pegawai.dart';
+import 'package:uas/navbar.dart';
 
 import 'apiservices.dart';
 import 'class.dart';
 import 'firebase_options.dart';
 
+final navigatorKey = GlobalKey<NavigatorState>();
 Services services_api = Services();
 late Future<List<pegawai>> list_pegawai = services_api.get_pegawai();
 void main() async {
@@ -14,8 +16,9 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(MaterialApp(
-    title: "",
-    home: MyApp(),
+    navigatorKey: navigatorKey,
+    title: "Berita",
+    home: NavBar(),
   ));
 }
 
