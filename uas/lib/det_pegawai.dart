@@ -30,20 +30,32 @@ class _detail_pegawaiState extends State<detail_pegawai> {
             children: [
               Text("ctitle : " +
                   widget.isiDataFinal[widget.index].ctitle +
-                  "cpubdate : " +
+                  "\ncpubdate : " +
                   widget.isiDataFinal[widget.index].cpubdate +
-                  "\cdesc : " +
+                  "\ncdesc : " +
                   widget.isiDataFinal[widget.index].cdesc +
-                  "\cthumbnail : " +
+                  "\ncthumbnail : " +
                   widget.isiDataFinal[widget.index].cthumbnail +
-                  "\link : " +
+                  "\nlink : " +
                   widget.isiDataFinal[widget.index].link),
               Image.network(widget.isiDataFinal[widget.index].cthumbnail),
               ElevatedButton(
                   onPressed: () {
-                    setState(() {
-                      //Database.tambahData(KTM: KTM)
-                    });
+                    setState(() {});
+                    final dtLike = pegawai(
+                      link: widget.isiDataFinal[widget.index].link.toString(),
+                      ctitle:
+                          widget.isiDataFinal[widget.index].ctitle.toString(),
+                      cpubdate:
+                          widget.isiDataFinal[widget.index].cpubdate.toString(),
+                      cdesc: widget.isiDataFinal[widget.index].cdesc.toString(),
+                      cthumbnail: widget.isiDataFinal[widget.index].cthumbnail
+                          .toString(),
+                    );
+                    print(dtLike);
+                    Database.tambahData(KTM: dtLike);
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) => detData()));
                   },
                   child: Text("Like"))
             ],
