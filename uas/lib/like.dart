@@ -3,8 +3,10 @@ import 'package:uas/class.dart';
 
 import 'package:flutter/material.dart';
 import 'package:uas/det_pegawai.dart';
+import 'package:uas/main.dart';
 
 import 'dbservices.dart';
+import 'navbar.dart';
 
 class Like extends StatefulWidget {
   final pegawai? CPegawai;
@@ -70,6 +72,7 @@ class _LikeState extends State<Like> {
                         String cdesc = datas["description"].toString();
                         String cthumbnail = datas["thumbnail"].toString();
                         //_jumlah = snapshot.data!.docs.length;
+
                         return ListTile(
                           onTap: () {
                             final dtbaru = pegawai(
@@ -125,6 +128,54 @@ class detData_Database extends StatefulWidget {
 class _detData_DatabaseState extends State<detData_Database> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text("${widget.a.ctitle}")));
+    return Scaffold(
+        body: Container(
+      padding: EdgeInsets.fromLTRB(10, 50, 10, 10),
+      child: Column(
+        children: [
+          Image.network(widget.a.cthumbnail),
+          Text("Link : ${widget.a.link}"),
+          SizedBox(
+            height: 10,
+          ),
+          Text("title: ${widget.a.ctitle}"),
+          SizedBox(
+            height: 10,
+          ),
+          Text("pubDate : ${widget.a.cpubdate}"),
+          SizedBox(
+            height: 10,
+          ),
+          Text("description : ${widget.a.cdesc}"),
+          SizedBox(
+            height: 10,
+          ),
+          Text("thumbnail : ${widget.a.cthumbnail}"),
+          SizedBox(
+            height: 10,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                Database.DeleteData(Nama_KTM: widget.a.ctitle);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('Data berhasil dihapus'),
+                  duration: const Duration(seconds: 1),
+                  action: SnackBarAction(
+                    label: 'Ke Halaman Home?',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NavBar(),
+                        ),
+                      );
+                    },
+                  ),
+                ));
+              },
+              child: Text("Delete from Like"))
+        ],
+      ),
+    ));
   }
 }

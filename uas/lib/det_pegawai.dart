@@ -53,7 +53,8 @@ class _detail_pegawaiState extends State<detail_pegawai> {
           padding: EdgeInsets.all(20),
           child: Column(
             children: [
-              Text("Link : $slink"),
+              Text(
+                  "Link : $slink, title: $sctitle, pubDate : $scpubdate, description : $scdesc,  thumbnail : $scthumbnail"),
               Image.network(widget.isiDataFinal![widget.index].cthumbnail),
               ElevatedButton(
                   onPressed: () {
