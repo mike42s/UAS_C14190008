@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:uas/det_pegawai.dart';
 
 import 'apiservices.dart';
 import 'class.dart';
@@ -50,14 +51,28 @@ class _MyAppState extends State<MyApp> {
             return ListView.builder(
                 itemBuilder: (context, index) {
                   return Card(
-                      child: ListTile(
-                    title: Text(isiData[index].ctitle),
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        isiData[index].cthumbnail,
+                    child: ListTile(
+                      title: Text(isiData[index].ctitle),
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                          isiData[index].cthumbnail,
+                        ),
                       ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return detail_pegawai(
+                                isiDataFinal: isiData,
+                                index: index,
+                              );
+                            },
+                          ),
+                        );
+                      },
                     ),
-                  ));
+                  );
                 },
                 itemCount: isiData.length);
           } else if (snapshot.hasError) {
